@@ -22,6 +22,10 @@ const SimpleInput = (props) => {
 		// Value taken from input change handler
 		console.log(enteredName);
 
+		if (enteredName.trim() === '') {
+			return;
+		}
+
 		// Value taken from input ref on submission
 		const enteredValue = nameInputRef.current.value;
 		console.log(enteredValue);
