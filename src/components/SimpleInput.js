@@ -17,6 +17,18 @@ const SimpleInput = (props) => {
 
 	const nameInputChangeHander = (event) => {
 		setEnteredName(event.target.value);
+
+		/**
+		 * You can't check enteredName to check validity here because
+		 * setEnteredName() has been run in the line above, meaning
+		 * React has only scheduled this state change to happen and not
+		 * actually made it.
+		 *
+		 * Instead, use the event value to check validity.
+		 */
+		if (event.target.value.trim() !== '') {
+			setEnteredNameIsValid(true);
+		}
 	};
 
 	const nameInputBlurHandler = (event) => {
@@ -24,7 +36,6 @@ const SimpleInput = (props) => {
 
 		if (enteredName.trim() === '') {
 			setEnteredNameIsValid(false);
-			return;
 		}
 	};
 
