@@ -22,6 +22,19 @@ const SimpleInput = (props) => {
 	const enteredNameIsValid = enteredName.trim() !== '';
 	const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
+	/**
+	 * Add overall form validity that is dependant on validity of name input.
+	 *
+	 * Submit button is disabled if overall form validity is false.
+	 *
+	 * If you had any other inputs, they would be added to if statement below.
+	 */
+	let formIsValid = false;
+
+	if (enteredNameIsValid) {
+		formIsValid = true;
+	}
+
 	const nameInputChangeHander = (event) => {
 		setEnteredName(event.target.value);
 	};
@@ -74,7 +87,7 @@ const SimpleInput = (props) => {
 				)}
 			</div>
 			<div className="form-actions">
-				<button>Submit</button>
+				<button disabled={!formIsValid}>Submit</button>
 			</div>
 		</form>
 	);
